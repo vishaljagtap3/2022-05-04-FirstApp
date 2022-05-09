@@ -11,7 +11,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-public class MainActivity extends Activity {
+public class MainActivity extends Activity implements View.OnClickListener {
 
     private EditText edtUsername, edtPassword;
     private TextView txtWelcomeMessage;
@@ -68,7 +68,58 @@ public class MainActivity extends Activity {
 
         setContentView(mainContainerLayout);
 
-        btnSignIn.setOnClickListener(new BtnSignInClickListener());
+        /*btnSignIn.setOnClickListener(new BtnSignInClickListener());
+        txtWelcomeMessage.setOnClickListener(new TxtWelcomeMessageClickListener());*/
+
+        /*View.OnClickListener listener = new MyViewClickListener();
+        btnSignIn.setOnClickListener(listener);
+        txtWelcomeMessage.setOnClickListener(listener);*/
+
+        btnSignIn.setOnClickListener(this);
+        txtWelcomeMessage.setOnClickListener(this);
+
+    }
+
+    @Override
+    public void onClick(View view) {
+        if(view == txtWelcomeMessage) {
+            txtWelcomeMessage.setText("");
+        }
+        if(view == btnSignIn) {
+            if( edtUsername.getText().toString().equals("bitcode") && edtPassword.getText().toString().equals("bitcode@123") ) {
+                txtWelcomeMessage.setText("Welcome " + edtUsername.getText().toString());
+            }
+            else {
+                txtWelcomeMessage.setText("Login failed..");
+            }
+        }
+    }
+
+    class MyViewClickListener implements View.OnClickListener {
+        @Override
+        public void onClick(View view) {
+            if(view == txtWelcomeMessage) {
+                txtWelcomeMessage.setText("");
+            }
+            if(view == btnSignIn) {
+                if( edtUsername.getText().toString().equals("bitcode") && edtPassword.getText().toString().equals("bitcode@123") ) {
+                    txtWelcomeMessage.setText("Welcome " + edtUsername.getText().toString());
+                }
+                else {
+                    txtWelcomeMessage.setText("Login failed..");
+                }
+            }
+
+        }
+    }
+
+
+
+    class TxtWelcomeMessageClickListener implements View.OnClickListener {
+        @Override
+        public void onClick(View v) {
+            txtWelcomeMessage.setText("");
+        }
     }
 
     class BtnSignInClickListener implements View.OnClickListener {
