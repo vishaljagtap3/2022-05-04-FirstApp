@@ -6,6 +6,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <ImageView
+        android:src="@drawable/in_flag"
+        android:id="@+id/imgCountryFlag"
+        android:layout_width="100px"
+        android:layout_height="70px"/>
+
     <TextView
         android:id="@+id/txtWelcomeMessage"
         android:textSize="35px"
